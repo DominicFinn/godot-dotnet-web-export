@@ -1,6 +1,6 @@
 name: Build
 
-on: workflow_dispatch
+on: [workflow_dispatch, push]
 
 env:
   BUILD_NAME: web_export
@@ -348,6 +348,9 @@ jobs:
 
   upload-release:
     runs-on: ubuntu-latest
+
+    # Disabled for testing on a fork, so no release is created.
+    if: false
 
     needs: [build-final-zip, build-final-zip-macos]
 
